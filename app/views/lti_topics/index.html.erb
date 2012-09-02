@@ -1,0 +1,35 @@
+<h1>Listing lti_topics</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Topic</th>
+    <th>Url</th>
+    <th>Key</th>
+    <th>Secret</th>
+    <th>User</th>
+    <th>Xml snippet</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lti_topics.each do |lti_topic| %>
+  <tr>
+    <td><%= lti_topic.name %></td>
+    <td><%= lti_topic.topic_id %></td>
+    <td><%= lti_topic.url %></td>
+    <td><%= lti_topic.key %></td>
+    <td><%= lti_topic.secret %></td>
+    <td><%= lti_topic.user_id %></td>
+    <td><%= lti_topic.xml_snippet %></td>
+    <td><%= link_to 'Show', lti_topic %></td>
+    <td><%= link_to 'Edit', edit_lti_topic_path(lti_topic) %></td>
+    <td><%= link_to 'Destroy', lti_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lti topic', new_lti_topic_path %>
