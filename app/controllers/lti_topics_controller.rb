@@ -1,5 +1,4 @@
 class LtiTopicsController < ApplicationController
-
   def index
     if params[:topic_id] == nil
       # the topic id is missing - render an error
@@ -46,7 +45,29 @@ class LtiTopicsController < ApplicationController
   # GET /lti_topics/1.json
   def show
     @lti_topic = LtiTopic.find(params[:id])
-
+     
+    @response = Faraday.get(@lti_topic.url)
+    @xmlbody = XmlSimple.xml_in(@response.body)
+    @launch_url = @xmlbody['launch_url'].first
+    
+    @tc = IMS::LTI::ToolConfig.new(:title => @lti_topic.name, :launch_url => @launch_url)
+    @consumer = IMS::LTI::ToolConsumer.new(@lti_topic.key, @lti_topic.secret)
+    @consumer.set_config(@tc)
+    @consumer.resource_link_id = @lti_topic.topic_id
+    @consumer.user_id = "12345"
+    @consumer.lis_person_name_full = "colin x murtaugh"
+    @consumer.lis_person_contact_email_primary = "cmurtaugh@g.harvard.edu"
+    
+    
+    if params[:permissions] == 'admin' 
+      @consumer.roles = "instructor"
+    else
+      @consumer.roles = "learner"
+    end
+    @consumer.context_id = "k123"
+    @consumer.context_title = "Some sample course"
+    @consumer.context_label = "SAMP101"
+      
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @lti_topic }

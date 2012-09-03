@@ -2,6 +2,12 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+#require 'ims/lti'
+#require 'digest/md5'
+# must include the oauth proxy object
+#require 'oauth/request_proxy/rack_request'
+require 'xmlsimple'
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))

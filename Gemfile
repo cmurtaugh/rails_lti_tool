@@ -6,6 +6,8 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'ims-lti'
+gem 'xml-simple'
+gem 'faraday'
 
 group :development do
   gem 'sqlite3'

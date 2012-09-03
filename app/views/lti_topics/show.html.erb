@@ -35,6 +35,26 @@
   <%= @lti_topic.xml_snippet %>
 </p>
 
+<p>
+	<b>Xml from provider:</b>
+	<%= @xmlbody %>
+
+</p>
+
+<p>
+	<b>Launch URL from provider:</b>
+	<%= @xmlbody['launch_url'].first %>
+	
+</p>
+
+<form action="<%= @consumer.launch_url %>" name="ltiLaunchForm" id="ltiLaunchForm" method="post" encType="application/x-www-form-urlencoded">
+    <% @consumer.generate_launch_data.each_pair do |key, val| %>
+      <input type="hidden" name="<%= key %>" value="<%= val %>"/>
+    <% end %>
+    <button type="submit">Launch the tool</button>
+  </form>
+
+
 <!--
 <%= link_to 'Edit', edit_lti_topic_path(@lti_topic) %> |
 <%= link_to 'Back', lti_topics_path %>
