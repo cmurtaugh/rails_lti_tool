@@ -41,3 +41,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# Twitter Bootstrap UI
+gem 'bootstrap-sass'
+

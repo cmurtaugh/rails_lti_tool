@@ -1,61 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @lti_topic.name %>
-</p>
-
-<p>
-  <b>Topic:</b>
-  <%= @lti_topic.topic_id %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @lti_topic.url %>
-</p>
-
-<p>
-  <b>Key:</b>
-  <%= @lti_topic.key %>
-</p>
-
-<p>
-  <b>Secret:</b>
-  <%= @lti_topic.secret %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @lti_topic.user_id %>
-</p>
-
-<p>
-  <b>Xml snippet:</b>
-  <%= @lti_topic.xml_snippet %>
-</p>
-
-<p>
-	<b>Xml from provider:</b>
-	<%= @xmlbody %>
-
-</p>
-
-<p>
-	<b>Launch URL from provider:</b>
-	<%= @xmlbody['launch_url'].first %>
-	
-</p>
 
 <form action="<%= @consumer.launch_url %>" name="ltiLaunchForm" id="ltiLaunchForm" method="post" encType="application/x-www-form-urlencoded">
     <% @consumer.generate_launch_data.each_pair do |key, val| %>
       <input type="hidden" name="<%= key %>" value="<%= val %>"/>
     <% end %>
-    <button type="submit">Launch the tool</button>
+    <button type="submit">Click here to launch "<%= @lti_topic.name %>"</button>
   </form>
 
-
-<!--
-<%= link_to 'Edit', edit_lti_topic_path(@lti_topic) %> |
-<%= link_to 'Back', lti_topics_path %>
--->

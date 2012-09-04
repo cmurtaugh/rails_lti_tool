@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902133945) do
+ActiveRecord::Schema.define(:version => 20120903214911) do
 
   create_table "lti_topics", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120902133945) do
     t.text     "xml_snippet"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "launch_url"
   end
 
 end
